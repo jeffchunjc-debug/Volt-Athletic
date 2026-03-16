@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-volt: #D4FF00;
+  --color-slate-deep: #121417;
+  --font-bebas: "Bebas Neue", sans-serif;
+  --font-space: "Space Grotesk", monospace;
+}
+
+@layer base {
+  body {
+    @apply bg-slate-deep text-white font-space selection:bg-volt selection:text-slate-deep;
+    background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    background-attachment: fixed;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bebas uppercase tracking-wider;
+  }
+}
+
+@layer components {
+  .btn-volt {
+    @apply relative px-8 py-3 bg-volt text-slate-deep font-bebas text-xl font-bold transition-all duration-300 hover:scale-105 active:scale-95;
+    clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%);
+  }
+
+  .pulse-ring {
+    @apply absolute inset-0 rounded-sm border border-volt/50;
+    animation: pulse-ring 2s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite;
+  }
+
+  .glass-nav {
+    @apply sticky top-0 z-50 w-full border-b border-white/5 bg-slate-deep/80 backdrop-blur-md;
+  }
+
+  .performance-card {
+    @apply relative overflow-hidden border border-white/10 bg-slate-deep/50 transition-all duration-500 hover:border-volt/50 hover:shadow-[0_0_30px_rgba(212,255,0,0.1)];
+  }
+
+  .grayscale-hover {
+    @apply grayscale transition-all duration-700 hover:grayscale-0 hover:scale-110;
+  }
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.95);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+.digital-font {
+  font-family: 'Space Grotesk', monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+html {
+  scroll-behavior: smooth;
+}
